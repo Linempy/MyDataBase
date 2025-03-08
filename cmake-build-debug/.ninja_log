@@ -1,0 +1,13 @@
+# ninja log v6
+19	151	7631505947326312	CMakeFiles/DataBase.dir/products.c.obj	61f74ac9cc6e732a
+8	174	7631531436748522	CMakeFiles/DataBase.dir/main.c.obj	54ce4cdd3b4ccdff
+175	373	7631531438413989	DataBase.exe	251fe65fd2ea94bc
+3	340	7631557558501388	build.ninja	c49d20c3aed5a556
+19	160	7631493323647501	CMakeFiles/DataBase.dir/readFixedLengthString.c.obj	4d94f04c3500d59
+4	204	7631560517039926	CMakeFiles/DataBase.dir/main.c.obj	54ce4cdd3b4ccdff
+15	174	7631560806774285	CMakeFiles/DataBase.dir/readLine.c.obj	ec0b0fef7fc27727
+3	177	7631560806515544	CMakeFiles/DataBase.dir/products.c.obj	61f74ac9cc6e732a
+5	148	7631561153580031	CMakeFiles/DataBase.dir/readLine.c.obj	ec0b0fef7fc27727
+149	336	7631561155016950	DataBase.exe	b773425ce2d960ca
+4	158	7631565006134829	CMakeFiles/DataBase.dir/main.c.obj	54ce4cdd3b4ccdff
+158	334	7631565007665690	DataBase.exe	b773425ce2d960ca
