@@ -14,7 +14,7 @@ void printProduct(const Product *product) {
     printf("----------------------------\n");
 }
 
-void printProducts(const Product *products, size_t count) {
+void printProducts (const Product *products, size_t count) {
     for (size_t i = 0; i < count; i++) {
         // Используем арифметику указателей для доступа к элементам массива
         printProduct(products + i); // Эквивалентно &products[i]
