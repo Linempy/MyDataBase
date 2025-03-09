@@ -2,7 +2,7 @@
 // Created by mazin on 08.03.2025.
 //
 #include "products.h"
-#include "readLine.h"
+#include "../service/readLine.h"
 
 Product * fillProduct(size_t id, const char *name, const char *description,
                  float price, float amount, size_t category_id) {
