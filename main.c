@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include "products.h"
+#include "database/products.h"
+#include "output/outputConsoleDB.h"
+#include "output/tableColumn.h"
 
 
 void printProduct(const Product *product) {
@@ -15,28 +17,48 @@ void printProduct(const Product *product) {
 }
 
 void printProducts (const Product *products, size_t count) {
-    for (size_t i = 0; i < count; i++) {
-        // Используем арифметику указателей для доступа к элементам массива
-        printProduct(products + i); // Эквивалентно &products[i]
+    const Product *beg, *end;
+
+    for (beg = products, end = products + count; beg < end; beg++) {
+        printProduct(beg);
     }
 }
 
+
 int main(void) {
+
     system("chcp 65001");
     size_t defaultSize = 4;
 
-    Product *products = (Product *)malloc(defaultSize * sizeof(Product));
-    if (products == NULL) {
-        printf("Ошибка выделения памяти!\n");
-        return 1;
-    }
-    Product *product = inputDataProduct();
-    size_t count = 0;
+//    Product *products = (Product *)malloc(defaultSize * sizeof(Product));
+//    if (products == NULL) {
+//        printf("Ошибка выделения памяти!\n");
+//        return 1;
+//    }
 
-    addProduct(&products, product, &count, &defaultSize);
-    printProducts(products, 2);
+    Product products[] = {
+            {1, "Alice Johnson", "dsafdsfsf", 20, 3.8f, 1},
+            {2, "Bob Smith with a very long name that exceeds the limit",
+             "fdasfsdf",21, 3.5f, 2},
+            {3, "Charlie Brown", "dfsfd", 22, 3.9f, 1},
+            {4, "David Williams","fadsfdsfs", 23, 3.7f, 2}
+    };
 
-    free(product);
-    free(products);
+    // Описание столбцов таблицы
+    TableColumn columns[] = {
+            {"id", offsetof(Product, id), formatSizeT, 0},
+            {"name", offsetof(Product, name), formatString, 0},
+            {"description", offsetof(Product, description), formatString, 0},
+            {"price", offsetof(Product, price), formatFloat, 0},
+            {"amount", offsetof(Product, amount), formatFloat, 0},
+            {"category_id", offsetof(Product, category_id), formatSizeT, 0}
+
+    };
+
+    // Выводим таблицу
+    printTable(products, 4, columns, 5);
+    
+    
+//    free(products);
     return 0;
 }

@@ -55,17 +55,23 @@ build CMakeFiles/DataBase.dir/main.c.obj: C_COMPILER__DataBase_unscanned_Debug C
   OBJECT_DIR = CMakeFiles\DataBase.dir
   OBJECT_FILE_DIR = CMakeFiles\DataBase.dir
 
-build CMakeFiles/DataBase.dir/products.c.obj: C_COMPILER__DataBase_unscanned_Debug C$:/Users/mazin/CLionProjects/DataBase/products.c || cmake_object_order_depends_target_DataBase
-  DEP_FILE = CMakeFiles\DataBase.dir\products.c.obj.d
+build CMakeFiles/DataBase.dir/database/products.c.obj: C_COMPILER__DataBase_unscanned_Debug C$:/Users/mazin/CLionProjects/DataBase/database/products.c || cmake_object_order_depends_target_DataBase
+  DEP_FILE = CMakeFiles\DataBase.dir\database\products.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\DataBase.dir
-  OBJECT_FILE_DIR = CMakeFiles\DataBase.dir
+  OBJECT_FILE_DIR = CMakeFiles\DataBase.dir\database
 
-build CMakeFiles/DataBase.dir/readLine.c.obj: C_COMPILER__DataBase_unscanned_Debug C$:/Users/mazin/CLionProjects/DataBase/readLine.c || cmake_object_order_depends_target_DataBase
-  DEP_FILE = CMakeFiles\DataBase.dir\readLine.c.obj.d
+build CMakeFiles/DataBase.dir/service/readLine.c.obj: C_COMPILER__DataBase_unscanned_Debug C$:/Users/mazin/CLionProjects/DataBase/service/readLine.c || cmake_object_order_depends_target_DataBase
+  DEP_FILE = CMakeFiles\DataBase.dir\service\readLine.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\DataBase.dir
-  OBJECT_FILE_DIR = CMakeFiles\DataBase.dir
+  OBJECT_FILE_DIR = CMakeFiles\DataBase.dir\service
+
+build CMakeFiles/DataBase.dir/output/outputConsoleDB.c.obj: C_COMPILER__DataBase_unscanned_Debug C$:/Users/mazin/CLionProjects/DataBase/output/outputConsoleDB.c || cmake_object_order_depends_target_DataBase
+  DEP_FILE = CMakeFiles\DataBase.dir\output\outputConsoleDB.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\DataBase.dir
+  OBJECT_FILE_DIR = CMakeFiles\DataBase.dir\output
 
 
 # =============================================================================
@@ -75,7 +81,7 @@ build CMakeFiles/DataBase.dir/readLine.c.obj: C_COMPILER__DataBase_unscanned_Deb
 #############################################
 # Link the executable DataBase.exe
 
-build DataBase.exe: C_EXECUTABLE_LINKER__DataBase_Debug CMakeFiles/DataBase.dir/main.c.obj CMakeFiles/DataBase.dir/products.c.obj CMakeFiles/DataBase.dir/readLine.c.obj
+build DataBase.exe: C_EXECUTABLE_LINKER__DataBase_Debug CMakeFiles/DataBase.dir/main.c.obj CMakeFiles/DataBase.dir/database/products.c.obj CMakeFiles/DataBase.dir/service/readLine.c.obj CMakeFiles/DataBase.dir/output/outputConsoleDB.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\DataBase.dir
