@@ -73,12 +73,6 @@ build CMakeFiles/DataBase.dir/output/outputConsoleDB.c.obj: C_COMPILER__DataBase
   OBJECT_DIR = CMakeFiles\DataBase.dir
   OBJECT_FILE_DIR = CMakeFiles\DataBase.dir\output
 
-build CMakeFiles/DataBase.dir/service/visualWidth.c.obj: C_COMPILER__DataBase_unscanned_Debug C$:/Users/mazin/CLionProjects/DataBase/service/visualWidth.c || cmake_object_order_depends_target_DataBase
-  DEP_FILE = CMakeFiles\DataBase.dir\service\visualWidth.c.obj.d
-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\DataBase.dir
-  OBJECT_FILE_DIR = CMakeFiles\DataBase.dir\service
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target DataBase
@@ -87,7 +81,7 @@ build CMakeFiles/DataBase.dir/service/visualWidth.c.obj: C_COMPILER__DataBase_un
 #############################################
 # Link the executable DataBase.exe
 
-build DataBase.exe: C_EXECUTABLE_LINKER__DataBase_Debug CMakeFiles/DataBase.dir/main.c.obj CMakeFiles/DataBase.dir/database/products.c.obj CMakeFiles/DataBase.dir/service/readLine.c.obj CMakeFiles/DataBase.dir/output/outputConsoleDB.c.obj CMakeFiles/DataBase.dir/service/visualWidth.c.obj
+build DataBase.exe: C_EXECUTABLE_LINKER__DataBase_Debug CMakeFiles/DataBase.dir/main.c.obj CMakeFiles/DataBase.dir/database/products.c.obj CMakeFiles/DataBase.dir/service/readLine.c.obj CMakeFiles/DataBase.dir/output/outputConsoleDB.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\DataBase.dir

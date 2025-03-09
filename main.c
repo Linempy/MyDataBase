@@ -4,7 +4,6 @@
 #include "database/products.h"
 #include "output/outputConsoleDB.h"
 #include "output/tableColumn.h"
-#include "service/visualWidth.h"
 
 
 void printProduct(const Product *product) {
@@ -36,16 +35,12 @@ int main(void) {
 //        printf("Ошибка выделения памяти!\n");
 //        return 1;
 //    }
-    size_t count = 0;
-    const char *str = "Привет, Hello!"; // Строка с русскими, английскими буквами и смайликом
-    printf("Визуальная ширина строки: %zu\n", visualWidth(str)); // 20
-//    addProduct(&products, product, &count, &defaultSize);
 
     Product products[] = {
             {1, "Alice Johnson", "dsafdsfsf", 20, 3.8f, 1},
             {2, "Bob Smith with a very long name that exceeds the limit",
              "fdasfsdf",21, 3.5f, 2},
-            {3, "Charlie Brown", "русскоае", 22, 3.9f, 1},
+            {3, "Charlie Brown", "dfsfd", 22, 3.9f, 1},
             {4, "David Williams","fadsfdsfs", 23, 3.7f, 2}
     };
 

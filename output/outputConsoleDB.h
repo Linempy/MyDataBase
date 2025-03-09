@@ -21,10 +21,20 @@ void formatString(char* dest, size_t destSize, const void* field);
 void formatSizeT(char* dest, size_t destSize, const void* field);
 
 
-void truncateAndPadString(char* dest, const char* src, size_t width);
+void calculateColumnWidths(const Product* products, size_t count, TableColumn* columns, size_t numColumns);
+
+
+void printTableHeaders(TableColumn* columns, size_t numColumns);
+
+
+void printTableSeparator(TableColumn* columns, size_t numColumns);
+
+
+void printTableData(const Product* products, size_t count, TableColumn* columns, size_t numColumns);
 
 
 void printTable(const Product* products, size_t count, TableColumn* columns, size_t numColumns);
+
 
 
 #endif //DATABASE_OUTPUTCONSOLEDB_H

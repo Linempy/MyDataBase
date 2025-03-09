@@ -12,6 +12,4 @@ add_executable(DataBase main.c
         output/outputConsoleDB.h
         output/tableColumn.h
         output/formatField.h
-        service/visualWidth.c
-        service/visualWidth.h
 )
