@@ -4,6 +4,7 @@
 #include "outputConsoleDB.h"
 #include "tableColumn.h"
 #include "../database/products.h"
+#include "../database/productList.h"
 
 
 void formatSizeT(char* dest, size_t destSize, const void* field) {
@@ -22,18 +23,18 @@ void formatString(char* dest, size_t destSize, const void* field) {
 
 
 // Вычисление ширины столбцов
-void calculateColumnWidths(const Product* products, size_t count, TableColumn* columns, size_t numColumns) {
+void calculateColumnWidths(const ProductList *products, TableColumn* columns, size_t numColumns) {
     for (TableColumn *currColumn = columns, *end = columns + numColumns; currColumn < end; currColumn++) {
         currColumn->width = strlen(currColumn->header);
     }
 
-    for (const Product *currProduct = products, *endProduct = products + count;
-    currProduct < endProduct; currProduct++) {
+    for (size_t i = 0; i < products->length; i++) {
         for (TableColumn *currColumn = columns, *endColumn = columns + numColumns;
         currColumn < endColumn; currColumn++) {
 
             char buffer[256];
-            currColumn->format(buffer, sizeof(buffer), (const char*)(currProduct) + currColumn->offset);
+            currColumn->format(buffer, sizeof(buffer),
+                               (const char*)(&products->products[i]) + currColumn->offset);
             size_t len = strlen(buffer);
             if (len > currColumn->width) {
                 currColumn->width = len;
@@ -67,16 +68,15 @@ void printTableSeparator(TableColumn* columns, size_t numColumns) {
 }
 
 
-void printTableData(const Product* products, size_t count, TableColumn* columns, size_t numColumns) {
-    for (const Product *currProduct = products, *endProduct = products + count;
-    currProduct < endProduct; currProduct++) {
+void printTableData(const ProductList* products, TableColumn* columns, size_t numColumns) {
+    for (size_t i = 0; i < products->length; i++) {
         for (const TableColumn *currColumn = columns, *endColumn = columns + numColumns;
         currColumn < endColumn; currColumn++) {
 
             char buffer[256];
             currColumn->format(buffer,
                                sizeof(buffer),
-                               (const char*)(currProduct) + currColumn->offset);
+                               (const char*)(&products->products[i]) + currColumn->offset);
             if (currColumn == columns) printf(" %-*s ", currColumn->width, buffer);
             else printf("| %-*s ", currColumn->width, buffer);
         }
@@ -86,14 +86,14 @@ void printTableData(const Product* products, size_t count, TableColumn* columns,
 
 
 // Основная функция для вывода таблицы
-void printTable(const Product* products, size_t count, TableColumn* columns, size_t numColumns) {
-    if (!products || !columns || count == 0 || numColumns == 0) {
+void printTable(const ProductList *products, TableColumn* columns, size_t numColumns) {
+    if (!products || !columns || products->length == 0 || numColumns == 0) {
         fprintf(stderr, "Invalid input parameters.\n");
         return;
     }
 
     // Вычисляем ширину столбцов
-    calculateColumnWidths(products, count, columns, numColumns);
+    calculateColumnWidths(products, columns, numColumns);
 
     // Выводим заголовки
     printTableHeaders(columns, numColumns);
@@ -102,6 +102,7 @@ void printTable(const Product* products, size_t count, TableColumn* columns, siz
     printTableSeparator(columns, numColumns);
 
     // Выводим данные
-    printTableData(products, count, columns, numColumns);
+    printTableData(products, columns, numColumns);
+    printf("\n");
 }
 

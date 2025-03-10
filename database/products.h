@@ -22,11 +22,8 @@ typedef struct {
 //    char image_url[255];
 } Product;
 
-Product * fillProduct(size_t id, const char *name, const char *description,
-                      float price, float amount, size_t category_id);
 
 Product * inputDataProduct();
 
-bool addProduct(Product **product, const Product *newProduct, size_t *count, size_t *capacity);
 
 #endif //DATABASE_PRODUCTS_H
