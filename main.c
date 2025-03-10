@@ -5,6 +5,7 @@
 #include "output/outputConsoleDB.h"
 #include "output/tableColumn.h"
 #include "database/productList.h"
+#include "sorted/sortedByField.h"
 
 
 void printProduct(const Product *product) {
@@ -54,8 +55,8 @@ int main(void) {
     };
 
     // Выводим таблицу
-    printTable(&products, columns, 5);
-    removeProduct(&products, 0, defaultSize);
+
+    myQsort(products.products, products.length, sizeof(Product), comparePrice);
     printTable(&products, columns, 5);
 
 //    free(products);
