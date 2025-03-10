@@ -14,4 +14,6 @@ add_executable(DataBase main.c
         output/formatField.h
         database/productList.c
         database/productList.h
+        sorted/sortedByField.c
+        sorted/sortedByField.h
 )
