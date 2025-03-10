@@ -3,27 +3,7 @@
 //
 #include "products.h"
 #include "../service/readLine.h"
-
-Product * fillProduct(size_t id, const char *name, const char *description,
-                 float price, float amount, size_t category_id) {
-    Product *newProduct = (Product *) malloc(sizeof(Product));
-    if (!newProduct) {
-        printf("Ошибка в выделении памяти!\n");
-        return NULL;
-    }
-    newProduct->id = id;
-    strncpy(newProduct->name, name, sizeof(newProduct->name) - 1);
-    newProduct->name[sizeof(newProduct->name) - 1] = '\0';
-
-    strncpy(newProduct->description, description, sizeof(newProduct->description) - 1);
-    newProduct->description[sizeof(newProduct->description) - 1] = '\0';
-
-    newProduct->price = price;
-    newProduct->amount = amount;
-    newProduct->category_id = category_id;
-
-    return newProduct;
-}
+#include "productList.h"
 
 Product * inputDataProduct() {
     char name[64];
@@ -63,20 +43,3 @@ Product * inputDataProduct() {
     return fillProduct(0, name, description, price, amount, category_id);
 }
 
-
-bool addProduct(Product **product, const Product *newProduct, size_t *count, size_t *capacity) {
-    if(*count >= *capacity) {
-        *capacity *= 2;
-
-        *product = (Product *) realloc(*product, *capacity * sizeof(Product));
-        if (!*product) {
-            printf("Ошибка в выделении памяти!");
-            free(*product);
-            return false;
-        }
-    }
-    (*product)[*count] = *newProduct;
-    (*count)++;
-
-    return true;
-}

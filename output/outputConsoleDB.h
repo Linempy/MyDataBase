@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include "tableColumn.h"
 #include "../database/products.h"
+#include "../database/productList.h"
 
 
 void formatFloat(char* dest, size_t destSize, const void* field);
@@ -21,7 +22,7 @@ void formatString(char* dest, size_t destSize, const void* field);
 void formatSizeT(char* dest, size_t destSize, const void* field);
 
 
-void calculateColumnWidths(const Product* products, size_t count, TableColumn* columns, size_t numColumns);
+void calculateColumnWidths(const ProductList *products, TableColumn* columns, size_t numColumns);
 
 
 void printTableHeaders(TableColumn* columns, size_t numColumns);
@@ -30,10 +31,10 @@ void printTableHeaders(TableColumn* columns, size_t numColumns);
 void printTableSeparator(TableColumn* columns, size_t numColumns);
 
 
-void printTableData(const Product* products, size_t count, TableColumn* columns, size_t numColumns);
+void printTableData(const ProductList *products, TableColumn* columns, size_t numColumns);
 
 
-void printTable(const Product* products, size_t count, TableColumn* columns, size_t numColumns);
+void printTable(const ProductList *products, TableColumn* columns, size_t numColumns);
 
 
 
