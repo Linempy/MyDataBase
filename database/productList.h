@@ -9,7 +9,7 @@
 
 typedef struct {
     Product *products;
-    size_t size;
+    size_t length;
     size_t capacity;
 } ProductList;
 
@@ -17,6 +17,10 @@ ProductList createProductList(size_t defaultCapacity);
 
 void* safeRealloc(void *ptr, size_t newCapacity);
 
+
+void reRealloc(ProductList* products, size_t defaultCapacity);
+
+void removeProduct(ProductList* products, size_t index, size_t defaultCapacity);
 
 Product * fillProduct(size_t id, const char *name, const char *description,
                       float price, float amount, size_t category_id);

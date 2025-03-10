@@ -28,7 +28,7 @@ void calculateColumnWidths(const ProductList *products, TableColumn* columns, si
         currColumn->width = strlen(currColumn->header);
     }
 
-    for (size_t i = 0; i < products->size; i++) {
+    for (size_t i = 0; i < products->length; i++) {
         for (TableColumn *currColumn = columns, *endColumn = columns + numColumns;
         currColumn < endColumn; currColumn++) {
 
@@ -69,7 +69,7 @@ void printTableSeparator(TableColumn* columns, size_t numColumns) {
 
 
 void printTableData(const ProductList* products, TableColumn* columns, size_t numColumns) {
-    for (size_t i = 0; i < products->size; i++) {
+    for (size_t i = 0; i < products->length; i++) {
         for (const TableColumn *currColumn = columns, *endColumn = columns + numColumns;
         currColumn < endColumn; currColumn++) {
 
@@ -87,7 +87,7 @@ void printTableData(const ProductList* products, TableColumn* columns, size_t nu
 
 // Основная функция для вывода таблицы
 void printTable(const ProductList *products, TableColumn* columns, size_t numColumns) {
-    if (!products || !columns || products->size == 0 || numColumns == 0) {
+    if (!products || !columns || products->length == 0 || numColumns == 0) {
         fprintf(stderr, "Invalid input parameters.\n");
         return;
     }
@@ -103,5 +103,6 @@ void printTable(const ProductList *products, TableColumn* columns, size_t numCol
 
     // Выводим данные
     printTableData(products, columns, numColumns);
+    printf("\n");
 }
 

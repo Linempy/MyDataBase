@@ -31,15 +31,12 @@ int main(void) {
     system("chcp 65001");
     size_t defaultSize = 4;
 
-//    Product *products = (Product *)malloc(defaultSize * sizeof(Product));
-//    if (products == NULL) {
-//        printf("Ошибка выделения памяти!\n");
-//        return 1;
-//    }
-//    ProductList *products = (ProductList *) malloc(defaultSize * sizeof(Product));
     ProductList products = createProductList(2);
     Product prd = {1, "Alice Johnson", "dsafdsfsf", 20, 3.8f, 1};
     addProduct(&products, &prd);
+    addProduct(&products, &(Product) {2,
+                                     "Bob Smith with a very long name that exceeds the limit",
+                                     "fdasfsdf",21, 3.5f, 2});
 //            {2, "Bob Smith with a very long name that exceeds the limit",
 //             "fdasfsdf",21, 3.5f, 2},
 //            {3, "Charlie Brown", "dfsfd", 22, 3.9f, 1},
@@ -54,13 +51,13 @@ int main(void) {
             {"price", offsetof(Product, price), formatFloat, 0},
             {"amount", offsetof(Product, amount), formatFloat, 0},
             {"category_id", offsetof(Product, category_id), formatSizeT, 0}
-
     };
 
     // Выводим таблицу
     printTable(&products, columns, 5);
-    
-    
+    removeProduct(&products, 0, defaultSize);
+    printTable(&products, columns, 5);
+
 //    free(products);
     return 0;
 }
