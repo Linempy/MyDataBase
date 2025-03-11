@@ -6,6 +6,7 @@
 #define DATABASE_SORTEDBYFIELD_H
 
 #include <string.h>
+#include "../database/productList.h"
 
 
 /*

@@ -2,9 +2,7 @@
 // Created by mazin on 09.03.2025.
 //
 #include "outputConsoleDB.h"
-#include "tableColumn.h"
-#include "../database/products.h"
-#include "../database/productList.h"
+
 
 
 void formatSizeT(char* dest, size_t destSize, const void* field) {

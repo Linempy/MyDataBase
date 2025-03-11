@@ -2,7 +2,6 @@
 // Created by mazin on 10.03.2025.
 //
 #include "sortedByField.h"
-#include "../database/productList.h"
 
 int compareId(const void* a, const void* b) {
     const Product* objA = (const Product *) a;
@@ -23,6 +22,7 @@ int comparePrice(const void* a, const void* b) {
     if (diff > 0) return 1;
     return 0;
 }
+
 
 int compareAmount(const void* a, const void* b) {
     const Product * productA = (const Product *) a;
@@ -50,6 +50,7 @@ int compareDescription(const void* a, const void* b) {
     return strcmp(productA->description, productB->description);
 }
 
+
 // Функция для обмена двух элементов
 void swap(void* a, void* b, size_t size) {
     char* p = a;
@@ -60,6 +61,7 @@ void swap(void* a, void* b, size_t size) {
         q[i] = temp;
     }
 }
+
 
 // Функция разделения (partition)
 size_t partition(void* base, size_t low, size_t high, size_t size, int (*comparator)(const void*, const void*)) {
@@ -78,6 +80,7 @@ size_t partition(void* base, size_t low, size_t high, size_t size, int (*compara
     return i;
 }
 
+
 // Основная функция QuickSort
 void quickSort(void* base, size_t low, size_t high, size_t size, int (*comparator)(const void*, const void*)) {
     if (low < high) {
@@ -89,6 +92,7 @@ void quickSort(void* base, size_t low, size_t high, size_t size, int (*comparato
         quickSort(base, pi + 1, high, size, comparator);            // Сортировка правой части
     }
 }
+
 
 // Обёртка для удобства (аналог qsort)
 void myQsort(void* base, size_t nmemb, size_t size, int (*comparator)(const void*, const void*)) {
