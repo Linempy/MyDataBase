@@ -6,6 +6,7 @@
 #include "output/tableColumn.h"
 #include "database/productList.h"
 #include "sorted/sortedByField.h"
+#include "interactionFile/readWriteFile.h"
 
 
 void printProduct(const Product *product) {
@@ -36,13 +37,12 @@ int main(void) {
     Product prd = {1, "Alice Johnson", "dsafdsfsf", 20, 3.8f, 1};
     addProduct(&products, &prd);
     addProduct(&products, &(Product) {2,
-                                     "Bob Smith with a very long name that exceeds the limit",
-                                     "fdasfsdf",21, 3.5f, 2});
-//            {2, "Bob Smith with a very long name that exceeds the limit",
-//             "fdasfsdf",21, 3.5f, 2},
-//            {3, "Charlie Brown", "dfsfd", 22, 3.9f, 1},
-//            {4, "David Williams","fadsfdsfs", 23, 3.7f, 2}
-//    };
+                                      "Bob Smith with a very long name that exceeds the limit",
+                                      "fdasfsdf",21, 3.5f, 2});
+    addProduct(&products, &(Product) {3, "Charlie Brown",
+                                      "dfsfd", 22, 3.9f, 1});
+    addProduct(&products, &(Product) {4, "David Williams",
+                                      "fadsfdsfs", 23, 3.7f, 2});
 
     // Описание столбцов таблицы
     TableColumn columns[] = {
@@ -55,10 +55,10 @@ int main(void) {
     };
 
     // Выводим таблицу
-
     myQsort(products.products, products.length, sizeof(Product), comparePrice);
     printTable(&products, columns, 5);
+    saveTable("example.txt", &products, columns, ';');
 
-//    free(products);
+    freeProductList(&products);
     return 0;
 }

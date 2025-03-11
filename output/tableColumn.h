@@ -13,6 +13,7 @@ typedef struct {
     size_t offset;      // Смещение поля в структуре
     FormatField format; // Функция для форматирования значения
     size_t width;          // Ширина столбца
+    size_t count;       // кол-во столбцов
 } TableColumn;
 
 #endif //DATABASE_TABLECOLUMN_H

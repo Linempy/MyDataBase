@@ -1,9 +1,23 @@
 # ninja log v6
-4	217	7633472402670649	CMakeFiles/DataBase.dir/main.c.obj	54ce4cdd3b4ccdff
-308	496	7633472405722416	DataBase.exe	2d308730e02cd4c7
+4	113	7634102240430102	CMakeFiles/DataBase.dir/main.c.obj	54ce4cdd3b4ccdff
 104	308	7633472403891095	CMakeFiles/DataBase.dir/sorted/sortedByField.c.obj	d4f1db6af6c2d078
+125	244	7634102241637651	DataBase.exe	5a6cf3a1f70e2e2b
 22	438	7634020904561035	build.ninja	c49d20c3aed5a556
-69	294	7633472403327629	CMakeFiles/DataBase.dir/database/productList.c.obj	18f531f43e843b95
 29	234	7633472402921999	CMakeFiles/DataBase.dir/service/readLine.c.obj	74504b85c470e44
-40	250	7633472403033902	CMakeFiles/DataBase.dir/output/outputConsoleDB.c.obj	fffdfb24dd5b90f8
+69	294	7633472403327629	CMakeFiles/DataBase.dir/database/productList.c.obj	18f531f43e843b95
 18	187	7633472402816966	CMakeFiles/DataBase.dir/database/products.c.obj	2f574ad048155a62
+15	165	7634035233510882	CMakeFiles/DataBase.dir/output/outputConsoleDB.c.obj	fffdfb24dd5b90f8
+13	125	7634102240520900	CMakeFiles/DataBase.dir/interactionFile/readWriteFile.c.obj	96dc6d61a0b06203
+6	107	7634102565831824	CMakeFiles/DataBase.dir/interactionFile/readWriteFile.c.obj	96dc6d61a0b06203
+108	214	7634102566849307	DataBase.exe	5a6cf3a1f70e2e2b
+5	90	7634103896325448	CMakeFiles/DataBase.dir/main.c.obj	54ce4cdd3b4ccdff
+91	205	7634103897183869	DataBase.exe	5a6cf3a1f70e2e2b
+3	112	7634104265005541	CMakeFiles/DataBase.dir/interactionFile/readWriteFile.c.obj	96dc6d61a0b06203
+113	225	7634104266096800	DataBase.exe	5a6cf3a1f70e2e2b
+5	118	7634105071718180	CMakeFiles/DataBase.dir/main.c.obj	54ce4cdd3b4ccdff
+15	136	7634105071820596	CMakeFiles/DataBase.dir/database/products.c.obj	2f574ad048155a62
+24	143	7634105071902540	CMakeFiles/DataBase.dir/output/outputConsoleDB.c.obj	fffdfb24dd5b90f8
+33	152	7634105072002776	CMakeFiles/DataBase.dir/database/productList.c.obj	18f531f43e843b95
+47	163	7634105072135183	CMakeFiles/DataBase.dir/sorted/sortedByField.c.obj	d4f1db6af6c2d078
+67	175	7634105072335255	CMakeFiles/DataBase.dir/interactionFile/readWriteFile.c.obj	96dc6d61a0b06203
+175	295	7634105073410744	DataBase.exe	5a6cf3a1f70e2e2b
