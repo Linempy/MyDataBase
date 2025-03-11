@@ -16,4 +16,6 @@ add_executable(DataBase main.c
         database/productList.h
         sorted/sortedByField.c
         sorted/sortedByField.h
+        interactionFile/readWriteFile.c
+        interactionFile/readWriteFile.h
 )

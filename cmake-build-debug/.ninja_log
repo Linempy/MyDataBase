@@ -1,8 +1,9 @@
 # ninja log v6
-5	211	7633373437441714	CMakeFiles/DataBase.dir/main.c.obj	54ce4cdd3b4ccdff
-162	341	7633373873522628	DataBase.exe	f1b1ac4234fd445c
-22	438	7633455031471488	build.ninja	c49d20c3aed5a556
-7	201	7633372446462365	CMakeFiles/DataBase.dir/database/productList.c.obj	18f531f43e843b95
-34	237	7632176523957138	CMakeFiles/DataBase.dir/service/readLine.c.obj	74504b85c470e44
-5	161	7633373871949839	CMakeFiles/DataBase.dir/output/outputConsoleDB.c.obj	fffdfb24dd5b90f8
-15	129	7633370883577745	CMakeFiles/DataBase.dir/database/products.c.obj	2f574ad048155a62
+4	217	7633472402670649	CMakeFiles/DataBase.dir/main.c.obj	54ce4cdd3b4ccdff
+308	496	7633472405722416	DataBase.exe	2d308730e02cd4c7
+104	308	7633472403891095	CMakeFiles/DataBase.dir/sorted/sortedByField.c.obj	d4f1db6af6c2d078
+22	438	7634020904561035	build.ninja	c49d20c3aed5a556
+69	294	7633472403327629	CMakeFiles/DataBase.dir/database/productList.c.obj	18f531f43e843b95
+29	234	7633472402921999	CMakeFiles/DataBase.dir/service/readLine.c.obj	74504b85c470e44
+40	250	7633472403033902	CMakeFiles/DataBase.dir/output/outputConsoleDB.c.obj	fffdfb24dd5b90f8
+18	187	7633472402816966	CMakeFiles/DataBase.dir/database/products.c.obj	2f574ad048155a62
