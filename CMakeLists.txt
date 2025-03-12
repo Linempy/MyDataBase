@@ -16,4 +16,11 @@ add_executable(DataBase main.c
         database/productList.h
         sorted/sortedByField.c
         sorted/sortedByField.h
+        interactionFile/writeFile.c
+        interactionFile/writeFile.h
+        interactionFile/readFile.c
+        interactionFile/readFile.h
+        service/splitString.c
+        service/splitString.h
+        output/tableColumn.c
 )

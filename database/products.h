@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "../service/readLine.h"
 
 
 typedef struct {

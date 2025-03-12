@@ -28,5 +28,6 @@ Product * fillProduct(size_t id, const char *name, const char *description,
 
 bool addProduct(ProductList *productList, const Product *newProduct);
 
+void freeProductList(ProductList* products);
 
 #endif //DATABASE_PRODUCTLIST_H
