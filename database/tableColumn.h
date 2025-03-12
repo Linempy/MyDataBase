@@ -7,7 +7,10 @@
 
 #include <stddef.h>
 #include <stdlib.h>
-#include "formatField.h"
+#include "../output/formatField.h"
+#include "productList.h"
+#include "products.h"
+#include "../output/formatField.h"
 
 typedef struct {
     const char* header;
@@ -25,11 +28,11 @@ typedef struct {
 } TableColumnList;
 
 TableColumnList createTableColumnList(size_t initialCapacity);
+
 void addTableColumn(TableColumnList *list, const char *header, size_t offset, FormatField format, size_t width);
 
 void freeTableColumnList(TableColumnList *list);
 
-
-
+void addDefaultProductColumns(TableColumnList *list);
 
 #endif //DATABASE_TABLECOLUMN_H

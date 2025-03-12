@@ -3,7 +3,12 @@
 //
 #include "products.h"
 
-Product * fillProduct(size_t id, const char *name, const char *description,
+
+size_t getNextId(IdGenerator *generator) {
+    return generator->nextId++;
+}
+
+Product * fillProduct(IdGenerator *productIdGenerator, char *name, const char *description,
                       float price, float amount, size_t category_id) {
     Product *newProduct = (Product *) malloc(sizeof(Product));
     if (!newProduct) {
@@ -11,7 +16,7 @@ Product * fillProduct(size_t id, const char *name, const char *description,
         return NULL;
     }
 
-    newProduct->id = id;
+    newProduct->id = getNextId(productIdGenerator);
     strncpy(newProduct->name, name, sizeof(newProduct->name) - 1);
     newProduct->name[sizeof(newProduct->name) - 1] = '\0';
 
@@ -26,7 +31,7 @@ Product * fillProduct(size_t id, const char *name, const char *description,
 }
 
 
-Product * inputDataProduct() {
+Product * inputDataProduct(IdGenerator *productIdGenerator) {
     char name[64];
     char description[255];
     float price;
@@ -61,6 +66,7 @@ Product * inputDataProduct() {
     }
 
     // Нужно доставать Id
-    return fillProduct(0, name, description, price, amount, category_id);
+    return fillProduct(productIdGenerator, name, description, price, amount, category_id);
 }
+
 

@@ -9,5 +9,13 @@
 
 typedef void (*FormatField)(char* dest, size_t destSize, const void* field);
 
+void formatFloat(char* dest, size_t destSize, const void* field);
+
+
+void formatString(char* dest, size_t destSize, const void* field);
+
+
+void formatSizeT(char* dest, size_t destSize, const void* field);
+
 
 #endif //DATABASE_FORMATFIELD_H

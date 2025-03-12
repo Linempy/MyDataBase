@@ -7,10 +7,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <errno.h>
 #include "../service/splitString.h"
 #include "../database/productList.h"
 #include "../database/products.h"
-#include "../output/tableColumn.h"
+#include "../database/tableColumn.h"
 #include "../output/outputConsoleDB.h"
 
 

@@ -43,3 +43,13 @@ void freeTableColumnList(TableColumnList *list) {
     }
     list->count = 0;
 }
+
+
+void addDefaultProductColumns(TableColumnList *list) {
+    addTableColumn(list, "id", offsetof(Product, id), formatSizeT, 0);
+    addTableColumn(list, "name", offsetof(Product, name), formatString, 0);
+    addTableColumn(list, "description", offsetof(Product, description), formatString, 0);
+    addTableColumn(list, "price", offsetof(Product, price), formatFloat, 0);
+    addTableColumn(list, "amount", offsetof(Product, amount), formatFloat, 0);
+    addTableColumn(list, "category_id", offsetof(Product, category_id), formatSizeT, 0);
+}

@@ -141,13 +141,16 @@ ProductList readData(char * filename, char delimiter, size_t defaultSizeProdList
 
     ProductList products = createProductList(defaultSizeProdList);
 
-    char* line;
+    IdGenerator productIdGenerator = {1};
+
+    char* line = readLine(file);
     size_t tokenCount = 6;
-    while ((line = readLine(file)) != NULL) {
+    while (line != NULL) {
         char **data = splitString(line, delimiter, &tokenCount);
         if (tokenCount != 6) {
             fprintf(stderr, "Ошибка: некорректное количество полей в строке.\n");
             free(line);
+            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
@@ -158,32 +161,37 @@ ProductList readData(char * filename, char delimiter, size_t defaultSizeProdList
         if (!parseSizeT(data[0], &id)) {
             fprintf(stderr, "Ошибка: некорректный ID.\n");
             free(line);
+            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
         if (!parseFloat(data[3], &price)) {
             fprintf(stderr, "Ошибка: некорректная цена.\n");
             free(line);
+            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
         if (!parseFloat(data[4], &amount)) {
             fprintf(stderr, "Ошибка: некорректное количество.\n");
             free(line);
+            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
         if (!parseSizeT(data[5], &category_id)) {
             fprintf(stderr, "Ошибка: некорректный ID категории.\n");
             free(line);
+            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
 
-        Product *product = fillProduct(id, data[1], data[2], price, amount, category_id);
+        Product *product = fillProduct(&productIdGenerator, data[1], data[2], price, amount, category_id);
         addProduct(&products, product);
 
         free(line);
+        line = NULL;
         freeArrayData(data, tokenCount);
     }
 
