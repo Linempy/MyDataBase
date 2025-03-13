@@ -65,3 +65,12 @@
 230	461	7636059652075837	DataBase.exe	ce1a8de99536eb01
 11	261	7636061675338755	CMakeFiles/DataBase.dir/interface/cli.c.obj	c38b56fec9efcc47
 274	492	7636061677979997	DataBase.exe	ce1a8de99536eb01
+41	166	7636067361752488	CMakeFiles/DataBase.dir/lexicon/lexicon.c.obj	fd0bbdd02d1b4339
+8	206	7636067361421535	CMakeFiles/DataBase.dir/main.c.obj	a1a5c067a43f6f64
+25	270	7636067361590281	CMakeFiles/DataBase.dir/interface/cli.c.obj	c38b56fec9efcc47
+270	474	7636067364039672	DataBase.exe	ce1a8de99536eb01
+30	264	7636070412514848	CMakeFiles/DataBase.dir/service/splitString.c.obj	1b784644d3898aed
+8	395	7636070412293670	CMakeFiles/DataBase.dir/interactionFile/readFile.c.obj	e0bbea9c9e314984
+396	681	7636070416162936	DataBase.exe	ce1a8de99536eb01
+10	258	7636075780324271	CMakeFiles/DataBase.dir/output/outputConsoleDB.c.obj	acfe5455cd76decf
+259	511	7636075782819240	DataBase.exe	ce1a8de99536eb01

@@ -141,9 +141,8 @@ ProductList readData(char * filename, char delimiter, ProductList *products,
     }
 
     char* line = readLine(file); // Пропускаем первую строку
-    line = readLine(file);
     size_t tokenCount = 6;
-    while (line != NULL) {
+    while ((line=readLine(file)) != NULL) {
         char **data = splitString(line, delimiter, &tokenCount);
         if (tokenCount != 6) {
             fprintf(stderr, "Ошибка: некорректное количество полей в строке.\n");
@@ -213,6 +212,7 @@ bool loadTable(ProductList *products,TableColumnList *columns,
         fprintf(stderr, "Ошибка чтения заголовка таблицы.\n");
         return false;
     }
+
     ProductList productList = readData(filename, delimiter, products, idGenerator);
     if (isEmptyProduct(&productList) || productList.products == NULL) {
         fprintf(stderr, "Ошибка чтения данных таблицы.\n");

@@ -43,6 +43,7 @@ const char* CHOOSE_FIELD_SORT = "Введите номер поля, по кот
                                 "3. description  4. price\n"
                                 "5. amount       6. category_id\n";
 
+const char* SUCCESS_SORT = "Сортировка выполнена успешно!\n";
 const char DELIMITER = ';';
 
 

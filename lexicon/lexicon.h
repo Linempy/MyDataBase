@@ -26,6 +26,7 @@ extern const char* INCORRECT_ARGUMENTS;
 extern const char* ERROR_LOAD_TABLE;
 extern const char* TYPE_SORT_MESSAGE;
 extern const char* CHOOSE_FIELD_SORT;
+extern const char* SUCCESS_SORT;
 extern const char DELIMITER;
 
 

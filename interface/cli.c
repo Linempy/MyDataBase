@@ -96,6 +96,7 @@ CODE_HANDLER handlerMessage(ProductList *products, TableColumnList *columns,
         return SUCCESS;
     }
 
+    ///Перенести часть логики в отдельную функцию
     if (strcmp(message, SORT_TABLE) == 0) {
         int typeSort;
         int numberField;
@@ -116,7 +117,7 @@ CODE_HANDLER handlerMessage(ProductList *products, TableColumnList *columns,
         }
         myQsort(products->products, products->length, sizeof(Product),
                 comparators[(FieldType) numberField - 1], order);
-        printf("%s", "Сортировка выполнена успешно!\n");
+        printf("%s", SUCCESS_SORT);
 
         return SUCCESS;
     }

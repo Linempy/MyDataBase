@@ -18,7 +18,6 @@ char** splitString(const char *input, char delimiter, size_t *tokenCount) {
         return NULL;
     }
 
-    printf("|%s|", input);
     int maxTokens = 10;
     char **tokens = malloc(maxTokens * sizeof(char *));
     if (tokens == NULL) {

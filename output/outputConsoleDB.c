@@ -43,6 +43,7 @@ void calculateColumnWidths(const ProductList *products, TableColumn* columns, si
 
 
 void printTableHeaders(TableColumn* columns, size_t numColumns) {
+    printf("\n");
     for (TableColumn *currColumn = columns, *end = columns + numColumns; currColumn < end; currColumn++) {
         if (currColumn == columns) printf(" %-*s ", currColumn->width, currColumn->header);
         else printf("| %-*s ", currColumn->width, currColumn->header);

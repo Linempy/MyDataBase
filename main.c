@@ -44,13 +44,5 @@ int main(void) {
         } else return 0;
     }
 
-//    TableColumnList list = readHeader("example.txt", ';', 6);
-//    ProductList products = readData("example.txt", ';', defaultSizeProdList);
-
-    // Выводим таблицу
-//    myQsort(products.products, products.length, sizeof(Product), comparePrice, );
-//    printTable(&products, list.columns, 6);
-//    saveTable("example.txt", &products, list.columns, ';');
-
     return 0;
 }
