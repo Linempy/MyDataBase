@@ -46,11 +46,12 @@
 //}
 
 
-void writeHeader(const char* filename, ProductList *product, TableColumn* columns, char delimiter) {
+bool writeHeader(const char* filename, TableColumn* columns, char delimiter) {
+    printf("%shbhjb   ", filename);
     FILE *file = fopen(filename, "w");
     if (!file) {
         printf("Ошибка в открытии файла");
-        return;
+        return false;
     }
 
     //Заголовки
@@ -63,7 +64,7 @@ void writeHeader(const char* filename, ProductList *product, TableColumn* column
     if(fputc('\n', file) == EOF) {
         printf("Ошибка записи файла\n");
         fclose(file);
-        return;
+        return false;
     }
 
     fclose(file);
@@ -108,7 +109,7 @@ void saveTable(const char * filename, ProductList *products, TableColumn *column
         return;
     }
 
-    writeHeader(filename, products, columns, delimiter);
+    writeHeader(filename, columns, delimiter);
 
     writeData(filename, products, delimiter);
     printf("Файл \"%s\" успешно сохранен\n", filename);

@@ -123,27 +123,25 @@ float parseFloat(const char *str, float* result) {
 }
 
 
-void freeArrayData(char** data, size_t tokenCount) {
+void freeArrayData(char** data, size_t count) {
     if (data) {
-        for (size_t i = 0; i < tokenCount; i++) {
+        for (size_t i = 0; i < count; i++) {
             free(data[i]);
         }
         free(data);
     }
 }
 
-ProductList readData(char * filename, char delimiter, size_t defaultSizeProdList){
+ProductList readData(char * filename, char delimiter, ProductList *products,
+                     IdGenerator *idGenerator){
     FILE* file = fopen(filename, "r");
     if (!file) {
-        perror("Ошибка открытия файла.");
-        return (ProductList){NULL, 0, 0};
+        perror("Ошибка открытии файла");
+        return (ProductList) {NULL, 0, 0};
     }
 
-    ProductList products = createProductList(defaultSizeProdList);
-
-    IdGenerator productIdGenerator = {1};
-
-    char* line = readLine(file);
+    char* line = readLine(file); // Пропускаем первую строку
+    line = readLine(file);
     size_t tokenCount = 6;
     while (line != NULL) {
         char **data = splitString(line, delimiter, &tokenCount);
@@ -187,8 +185,9 @@ ProductList readData(char * filename, char delimiter, size_t defaultSizeProdList
             continue;
         }
 
-        Product *product = fillProduct(&productIdGenerator, data[1], data[2], price, amount, category_id);
-        addProduct(&products, product);
+        Product *product = fillProductByIdGenerator(idGenerator, data[1],
+                                                    data[2], price, amount, category_id);
+        addProduct(products, product);
 
         free(line);
         line = NULL;
@@ -197,7 +196,39 @@ ProductList readData(char * filename, char delimiter, size_t defaultSizeProdList
 
     fclose(file);
 
-    return products;
+    return *products;
 }
 
 
+bool loadTable(ProductList *products,TableColumnList *columns,
+              char * filename, char delimiter, IdGenerator *idGenerator, size_t defaultSizeProdList) {
+
+    if (!products || !columns || !filename) {
+        fprintf(stderr, "Ошибка: неверные аргументы.\n");
+        return false;
+    }
+
+    TableColumnList columnList = readHeader(filename, delimiter, 6);
+    if (columnList.columns == NULL) {
+        fprintf(stderr, "Ошибка чтения заголовка таблицы.\n");
+        return false;
+    }
+    ProductList productList = readData(filename, delimiter, products, idGenerator);
+    if (isEmptyProduct(&productList) || productList.products == NULL) {
+        fprintf(stderr, "Ошибка чтения данных таблицы.\n");
+
+        freeTableColumnList(&columnList);
+
+        if(!isEmptyProduct(&productList)) {
+            freeProductList(&productList);
+        }
+
+        return false;
+    }
+
+    *columns = columnList;
+    *products = productList;
+
+    return true;
+
+}

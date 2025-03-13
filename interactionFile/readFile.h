@@ -23,8 +23,13 @@ size_t parseSizeT(const char *str, size_t *result);
 
 float parseFloat(const char *str, float* result);
 
-void freeArrayData(char** data, size_t tokenCount);
+void freeArrayData(char** data, size_t count);
 
-ProductList readData(char * filename, char delimiter, size_t defaultSizeProdList);
+ProductList readData(char * filename, char delimiter, ProductList *products,
+                     IdGenerator *idGenerator);
+
+bool loadTable(ProductList *products,TableColumnList *columns,
+              char * filename, char delimiter, IdGenerator *idGenerator, size_t defaultSizeProdList);
+
 
 #endif //DATABASE_READFILE_H

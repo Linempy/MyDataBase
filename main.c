@@ -30,7 +30,6 @@ int main(void) {
 
     printf("%s", HELLO_MESSAGE);
     printf("%s", INFO_OF_APP);
-    setFileName(filename, sizeof(filename));
 
     while (processWork) {
         char message[255];
@@ -49,7 +48,7 @@ int main(void) {
 //    ProductList products = readData("example.txt", ';', defaultSizeProdList);
 
     // Выводим таблицу
-//    myQsort(products.products, products.length, sizeof(Product), comparePrice);
+//    myQsort(products.products, products.length, sizeof(Product), comparePrice, );
 //    printTable(&products, list.columns, 6);
 //    saveTable("example.txt", &products, list.columns, ';');
 

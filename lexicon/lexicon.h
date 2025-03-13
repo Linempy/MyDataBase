@@ -23,6 +23,9 @@ extern const char* PRODUCT_WAS_ADDED;
 extern const char* EXIT_FROM_APP;
 extern const char* ERROR_ADD_PRODUCT;
 extern const char* INCORRECT_ARGUMENTS;
+extern const char* ERROR_LOAD_TABLE;
+extern const char* TYPE_SORT_MESSAGE;
+extern const char* CHOOSE_FIELD_SORT;
 extern const char DELIMITER;
 
 

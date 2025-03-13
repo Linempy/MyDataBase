@@ -8,7 +8,7 @@ size_t getNextId(IdGenerator *generator) {
     return generator->nextId++;
 }
 
-Product * fillProduct(IdGenerator *productIdGenerator, char *name, const char *description,
+Product * fillProductByIdGenerator(IdGenerator *productIdGenerator, char *name, const char *description,
                       float price, float amount, size_t category_id) {
     Product *newProduct = (Product *) malloc(sizeof(Product));
     if (!newProduct) {
@@ -17,6 +17,29 @@ Product * fillProduct(IdGenerator *productIdGenerator, char *name, const char *d
     }
 
     newProduct->id = getNextId(productIdGenerator);
+    strncpy(newProduct->name, name, sizeof(newProduct->name) - 1);
+    newProduct->name[sizeof(newProduct->name) - 1] = '\0';
+
+    strncpy(newProduct->description, description, sizeof(newProduct->description) - 1);
+    newProduct->description[sizeof(newProduct->description) - 1] = '\0';
+
+    newProduct->price = price;
+    newProduct->amount = amount;
+    newProduct->category_id = category_id;
+
+    return newProduct;
+}
+
+
+Product * fillProductById(size_t id, char *name, const char *description,
+                      float price, float amount, size_t category_id) {
+    Product *newProduct = (Product *) malloc(sizeof(Product));
+    if (!newProduct) {
+        printf("Ошибка в выделении памяти!\n");
+        return NULL;
+    }
+
+    newProduct->id = id;
     strncpy(newProduct->name, name, sizeof(newProduct->name) - 1);
     newProduct->name[sizeof(newProduct->name) - 1] = '\0';
 
@@ -66,7 +89,7 @@ Product * inputDataProduct(IdGenerator *productIdGenerator) {
     }
 
 
-    return fillProduct(productIdGenerator, name, description, price, amount, category_id);
+    return fillProductByIdGenerator(productIdGenerator, name, description, price, amount, category_id);
 }
 
 

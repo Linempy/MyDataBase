@@ -31,9 +31,11 @@ typedef struct {
 size_t getNextId(IdGenerator *generator);
 
 
-Product * fillProduct(IdGenerator *productIdGenerator, char *name, const char *description,
+Product * fillProductByIdGenerator(IdGenerator *productIdGenerator, char *name, const char *description,
                       float price, float amount, size_t category_id);
 
+Product * fillProductById(size_t id, char *name, const char *description,
+                                   float price, float amount, size_t category_id);
 
 Product * inputDataProduct(IdGenerator *productIdGenerator);
 

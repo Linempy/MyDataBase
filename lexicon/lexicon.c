@@ -35,6 +35,12 @@ const char* ERROR_ADD_PRODUCT = "ERROR: Ошибка добавления про
 const char* INCORRECT_ARGUMENTS = "ERROR: Некорректные аргументы\n";
 const char* PRODUCT_WAS_ADDED = "Продукт был успешно добавлен в таблицу\n";
 const char* EXIT_FROM_APP = "exit";
+const char* ERROR_LOAD_TABLE = "ERROR: Ошибка загрузки файла\n";
+const char* TYPE_SORT_MESSAGE = "\nТип сортировки\nВведите соответствующий номер:\n"
+                                "1. по возрастанию\n2.по убыванию\n";
+const char* CHOOSE_FIELD_SORT = "Введите номер, по которому хотите отсортировать из полей:"
+                                "\n1. id    2. name\n3. description    4. price\n"
+                                "5. amount    6. category_id";
 
 const char DELIMITER = ';';
 

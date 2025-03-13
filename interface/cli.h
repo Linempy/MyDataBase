@@ -13,6 +13,9 @@
 #include "../database/tableColumn.h"
 #include "../output/outputConsoleDB.h"
 #include "../interactionFile/writeFile.h"
+#include "../interactionFile/readFile.h"
+#include "../sorted/sortedByField.h"
+#include "../service/getLine.h"
 
 
 typedef enum {

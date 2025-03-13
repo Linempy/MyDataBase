@@ -37,11 +37,13 @@ void addTableColumn(TableColumnList *list, const char *header, size_t offset, Fo
 
 
 void freeTableColumnList(TableColumnList *list) {
-    if (list->columns) {
-        free(list->columns);
-        list->columns = NULL;
+    if (list) {
+        if (list->columns) {
+            free(list->columns);
+            list->columns = NULL;
+        }
+        list->count = 0;
     }
-    list->count = 0;
 }
 
 

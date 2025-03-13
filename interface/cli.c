@@ -27,9 +27,10 @@ void setFileName(char *filename, size_t filenameSize){
         return;
     }
 
-    printf("Введите название таблицы: ");
+    char prompt[86];
+    sprintf(prompt, "Введите название таблицы (макс. %zu символов): ", filenameSize-5);
     if (!inputString(filename, (int) filenameSize,
-                     "Введите название таблицы (макс. 59 символов): ")) {
+                     prompt)) {
         fprintf(stderr, "Ошибка ввода названия файла\n");
         return;
     }
@@ -41,6 +42,12 @@ void setFileName(char *filename, size_t filenameSize){
 
     strcat(filename, ".txt");
 }
+
+void inputSortedByField(char* typeSort, char* field) {
+
+}
+
+
 
 
 
@@ -72,8 +79,43 @@ CODE_HANDLER handlerMessage(ProductList *products, TableColumnList *columns,
     }
 
     if(strcmp(message, SAVE_TABLE) == 0) {
-        saveTable(filename, products, columns->columns, DELIMITER);
+        char saveFileName[64];
+        setFileName(saveFileName, sizeof(saveFileName));
+        saveTable(saveFileName, products, columns->columns, DELIMITER);
         return SUCCESS;
+    }
+
+    if (strcmp(message, LOAD_TABLE) == 0) {
+        char loadFileName[64];
+        setFileName(loadFileName, sizeof(loadFileName));
+        if (!loadTable(products, columns, loadFileName, DELIMITER,
+                       productIdGenerator, 6)) {
+            fprintf(stderr, "%s", ERROR_LOAD_TABLE);
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+
+    if (strcmp(message, SORT_TABLE) == 0) {
+        int typeSort;
+        int numberField;
+        if(!inputNumber(&typeSort, "%d", TYPE_SORT_MESSAGE, INCORRECT_ARGUMENTS) ||
+           !inputNumber(&numberField, "%d",CHOOSE_FIELD_SORT, INCORRECT_ARGUMENTS)){
+            fprintf(stderr, "%s", INCORRECT_ARGUMENTS);
+            return ERROR;
+        }
+
+        if (typeSort < 1 || typeSort > 2) {
+            fprintf(stderr, "%s", INCORRECT_ARGUMENTS);
+            return ERROR;
+        }
+
+        int order = typeSort == 1 ? 1 : -1;
+        if (numberField < 0 || numberField >= NUM_FIELDS){
+                fprintf(stderr, "%s", INCORRECT_ARGUMENTS);
+        }
+        myQsort(products->products, products->length, sizeof(Product),
+                comparators[(FieldType) numberField - 1], order);
     }
 
     if (strcmp(message, PRINT_TABLE) == 0) {
