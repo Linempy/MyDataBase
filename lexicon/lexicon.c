@@ -31,16 +31,17 @@ const char* OTHER_MESSAGE = "Я тебя не понимаю\n";
 
 const char* ERROR_CHOOSE_ACT = "\nERROR: Некорректная строка\n";
 const char* ERROR_PRODUCT_LIST_PTR = "\nERROR: Ссылка на NULL\n";
-const char* ERROR_ADD_PRODUCT = "ERROR: Ошибка добавления продукта\n";
-const char* INCORRECT_ARGUMENTS = "ERROR: Некорректные аргументы\n";
+const char* ERROR_ADD_PRODUCT = "\nERROR: Ошибка добавления продукта\n";
+const char* INCORRECT_ARGUMENTS = "\nERROR: Некорректные аргументы\n";
 const char* PRODUCT_WAS_ADDED = "Продукт был успешно добавлен в таблицу\n";
 const char* EXIT_FROM_APP = "exit";
-const char* ERROR_LOAD_TABLE = "ERROR: Ошибка загрузки файла\n";
+const char* ERROR_LOAD_TABLE = "\nERROR: Ошибка загрузки файла\n";
 const char* TYPE_SORT_MESSAGE = "\nТип сортировки\nВведите соответствующий номер:\n"
-                                "1. по возрастанию\n2.по убыванию\n";
-const char* CHOOSE_FIELD_SORT = "Введите номер, по которому хотите отсортировать из полей:"
-                                "\n1. id    2. name\n3. description    4. price\n"
-                                "5. amount    6. category_id";
+                                "1. по возрастанию\n2. по убыванию\n";
+const char* CHOOSE_FIELD_SORT = "Введите номер поля, по которому хотите отсортировать:\n"
+                                "1. id           2. name\n"
+                                "3. description  4. price\n"
+                                "5. amount       6. category_id\n";
 
 const char DELIMITER = ';';
 

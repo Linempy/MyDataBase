@@ -111,11 +111,14 @@ CODE_HANDLER handlerMessage(ProductList *products, TableColumnList *columns,
         }
 
         int order = typeSort == 1 ? 1 : -1;
-        if (numberField < 0 || numberField >= NUM_FIELDS){
+        if (numberField < 0 || numberField > NUM_FIELDS){
                 fprintf(stderr, "%s", INCORRECT_ARGUMENTS);
         }
         myQsort(products->products, products->length, sizeof(Product),
                 comparators[(FieldType) numberField - 1], order);
+        printf("%s", "Сортировка выполнена успешно!\n");
+
+        return SUCCESS;
     }
 
     if (strcmp(message, PRINT_TABLE) == 0) {
