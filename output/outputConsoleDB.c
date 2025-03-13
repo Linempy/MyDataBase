@@ -43,6 +43,7 @@ void calculateColumnWidths(const ProductList *products, TableColumn* columns, si
 
 
 void printTableHeaders(TableColumn* columns, size_t numColumns) {
+    printf("\n");
     for (TableColumn *currColumn = columns, *end = columns + numColumns; currColumn < end; currColumn++) {
         if (currColumn == columns) printf(" %-*s ", currColumn->width, currColumn->header);
         else printf("| %-*s ", currColumn->width, currColumn->header);
@@ -85,9 +86,12 @@ void printTableData(const ProductList* products, TableColumn* columns, size_t nu
 
 // Основная функция для вывода таблицы
 void printTable(const ProductList *products, TableColumn* columns, size_t numColumns) {
-    if (!products || !columns || products->length == 0 || numColumns == 0) {
+    if (!products || !columns || numColumns == 0) {
         fprintf(stderr, "Invalid input parameters.\n");
         return;
+    } else if(isEmptyProduct(products) || products->length == 0) {
+        printf("%s", "\nТаблица пуста\n");
+        return ;
     }
 
     // Вычисляем ширину столбцов

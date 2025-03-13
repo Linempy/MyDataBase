@@ -6,9 +6,9 @@
 #define DATABASE_WRITEFILE_H
 
 #include "../database/productList.h"
-#include "../output/tableColumn.h"
+#include "../database/tableColumn.h"
 
-void writeHeader(const char* filename, ProductList *product, TableColumn* columns, char delimiter);
+bool writeHeader(const char* filename, TableColumn* columns, char delimiter);
 
 // Функция для преобразования int в строку
 void intToString(const void* data, char* buffer, size_t size);

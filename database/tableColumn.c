@@ -37,9 +37,21 @@ void addTableColumn(TableColumnList *list, const char *header, size_t offset, Fo
 
 
 void freeTableColumnList(TableColumnList *list) {
-    if (list->columns) {
-        free(list->columns);
-        list->columns = NULL;
+    if (list) {
+        if (list->columns) {
+            free(list->columns);
+            list->columns = NULL;
+        }
+        list->count = 0;
     }
-    list->count = 0;
+}
+
+
+void addDefaultProductColumns(TableColumnList *list) {
+    addTableColumn(list, "id", offsetof(Product, id), formatSizeT, 0);
+    addTableColumn(list, "name", offsetof(Product, name), formatString, 0);
+    addTableColumn(list, "description", offsetof(Product, description), formatString, 0);
+    addTableColumn(list, "price", offsetof(Product, price), formatFloat, 0);
+    addTableColumn(list, "amount", offsetof(Product, amount), formatFloat, 0);
+    addTableColumn(list, "category_id", offsetof(Product, category_id), formatSizeT, 0);
 }

@@ -13,11 +13,11 @@
 
 /* Функция считывания строки до нажатия на Enter
 */
-bool readFixedLengthString(char *buffer, size_t bufferSize);
+bool readFixedLengthString(char *buffer, int bufferSize);
 
 bool readNumber(void *value, const char *format);
 
-bool inputString(char *buffer, size_t bufferSize, const char *prompt);
+bool inputString(char *buffer, int bufferSize, const char *prompt);
 
 bool inputNumber(void *value, const char *format, const char *prompt, const char *errorMessage);
 

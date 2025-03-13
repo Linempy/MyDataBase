@@ -123,31 +123,31 @@ float parseFloat(const char *str, float* result) {
 }
 
 
-void freeArrayData(char** data, size_t tokenCount) {
+void freeArrayData(char** data, size_t count) {
     if (data) {
-        for (size_t i = 0; i < tokenCount; i++) {
+        for (size_t i = 0; i < count; i++) {
             free(data[i]);
         }
         free(data);
     }
 }
 
-ProductList readData(char * filename, char delimiter, size_t defaultSizeProdList){
+ProductList readData(char * filename, char delimiter, ProductList *products,
+                     IdGenerator *idGenerator){
     FILE* file = fopen(filename, "r");
     if (!file) {
-        perror("Ошибка открытия файла.");
-        return (ProductList){NULL, 0, 0};
+        perror("Ошибка открытии файла");
+        return (ProductList) {NULL, 0, 0};
     }
 
-    ProductList products = createProductList(defaultSizeProdList);
-
-    char* line;
+    char* line = readLine(file); // Пропускаем первую строку
     size_t tokenCount = 6;
-    while ((line = readLine(file)) != NULL) {
+    while ((line=readLine(file)) != NULL) {
         char **data = splitString(line, delimiter, &tokenCount);
         if (tokenCount != 6) {
             fprintf(stderr, "Ошибка: некорректное количество полей в строке.\n");
             free(line);
+            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
@@ -158,38 +158,77 @@ ProductList readData(char * filename, char delimiter, size_t defaultSizeProdList
         if (!parseSizeT(data[0], &id)) {
             fprintf(stderr, "Ошибка: некорректный ID.\n");
             free(line);
+            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
         if (!parseFloat(data[3], &price)) {
             fprintf(stderr, "Ошибка: некорректная цена.\n");
             free(line);
+            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
         if (!parseFloat(data[4], &amount)) {
             fprintf(stderr, "Ошибка: некорректное количество.\n");
             free(line);
+            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
         if (!parseSizeT(data[5], &category_id)) {
             fprintf(stderr, "Ошибка: некорректный ID категории.\n");
             free(line);
+            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
 
-        Product *product = fillProduct(id, data[1], data[2], price, amount, category_id);
-        addProduct(&products, product);
+        Product *product = fillProductByIdGenerator(idGenerator, data[1],
+                                                    data[2], price, amount, category_id);
+        addProduct(products, product);
 
         free(line);
+        line = NULL;
         freeArrayData(data, tokenCount);
     }
 
     fclose(file);
 
-    return products;
+    return *products;
 }
 
 
+bool loadTable(ProductList *products,TableColumnList *columns,
+              char * filename, char delimiter, IdGenerator *idGenerator, size_t defaultSizeProdList) {
+
+    if (!products || !columns || !filename) {
+        fprintf(stderr, "Ошибка: неверные аргументы.\n");
+        return false;
+    }
+
+    TableColumnList columnList = readHeader(filename, delimiter, 6);
+    if (columnList.columns == NULL) {
+        fprintf(stderr, "Ошибка чтения заголовка таблицы.\n");
+        return false;
+    }
+
+    ProductList productList = readData(filename, delimiter, products, idGenerator);
+    if (isEmptyProduct(&productList) || productList.products == NULL) {
+        fprintf(stderr, "Ошибка чтения данных таблицы.\n");
+
+        freeTableColumnList(&columnList);
+
+        if(!isEmptyProduct(&productList)) {
+            freeProductList(&productList);
+        }
+
+        return false;
+    }
+
+    *columns = columnList;
+    *products = productList;
+
+    return true;
+
+}

@@ -10,7 +10,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "../service/readLine.h"
+#include "../service/getLine.h"
 
 
 typedef struct {
@@ -23,8 +23,23 @@ typedef struct {
 //    char image_url[255];
 } Product;
 
+typedef struct {
+    size_t nextId;
+} IdGenerator;
 
-Product * inputDataProduct();
+
+size_t getNextId(IdGenerator *generator);
+
+
+Product * fillProductByIdGenerator(IdGenerator *productIdGenerator, char *name, const char *description,
+                      float price, float amount, size_t category_id);
+
+Product * fillProductById(size_t id, char *name, const char *description,
+                                   float price, float amount, size_t category_id);
+
+Product * inputDataProduct(IdGenerator *productIdGenerator);
+
+size_t * inputIdByProduct(size_t *id);
 
 
 #endif //DATABASE_PRODUCTS_H

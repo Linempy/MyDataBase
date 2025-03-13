@@ -8,18 +8,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "tableColumn.h"
+#include "../database/tableColumn.h"
 #include "../database/products.h"
 #include "../database/productList.h"
-
-
-void formatFloat(char* dest, size_t destSize, const void* field);
-
-
-void formatString(char* dest, size_t destSize, const void* field);
-
-
-void formatSizeT(char* dest, size_t destSize, const void* field);
+#include "formatField.h"
 
 
 void calculateColumnWidths(const ProductList *products, TableColumn* columns, size_t numColumns);
