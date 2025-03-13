@@ -17,11 +17,13 @@
 int main(void) {
 
     system("chcp 65001");
-    size_t defaultSizeProdList = 2;
+    size_t defaultSizeProdList = 4;
+    size_t defaultSizeTableList = 6;
     bool processWork = true;
-    ProductList products = createProductList(4);
+
+    ProductList products = createProductList(defaultSizeProdList);
+    TableColumnList columns = createTableColumnList(defaultSizeTableList);
     IdGenerator productIdGenerator = {1};
-    TableColumnList columns = createTableColumnList(6);
     addDefaultProductColumns(&columns);
 
 
@@ -31,7 +33,12 @@ int main(void) {
     while (processWork) {
         char message[255];
         if(chooseAct(message)) {
-            handlerMessage(&products, &columns, message, &productIdGenerator);
+            CODE_HANDLER result = handlerMessage(&products, &columns, message, &productIdGenerator);
+            if (result == 2) {
+                freeProductList(&products);
+                freeTableColumnList(&columns);
+                break;
+            }
         } else return 0;
     }
 
@@ -43,9 +50,6 @@ int main(void) {
 //    printTable(&products, list.columns, 6);
 //    saveTable("example.txt", &products, list.columns, ';');
 
-
-    freeProductList(&products);
-    freeTableColumnList(&columns);
 
     return 0;
 }

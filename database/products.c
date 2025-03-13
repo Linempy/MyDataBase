@@ -51,22 +51,30 @@ Product * inputDataProduct(IdGenerator *productIdGenerator) {
     }
 
     if (!inputNumber(&price, "%f",
-                     "Введите цену товара: ", "Ошибка: введена некорректная цена.")) {
+                     "Введите цену товара: ", "Ошибка: введена некорректная цена.\n")) {
         return NULL;
     }
 
     if (!inputNumber(&amount, "%f",
-                     "Введите количество товара: ", "Ошибка: введено некорректное количество.")) {
+                     "Введите количество товара: ", "Ошибка: введено некорректное количество.\n")) {
         return NULL;
     }
 
     if (!inputNumber(&category_id, "%zu",
-                     "Введите категорию товара: ", "Ошибка: введена некорректная категория.")) {
+                     "Введите категорию товара: ", "Ошибка: введена некорректная категория.\n")) {
         return NULL;
     }
 
-    // Нужно доставать Id
+
     return fillProduct(productIdGenerator, name, description, price, amount, category_id);
+}
+
+
+size_t * inputIdByProduct(size_t *id) {
+    if (!inputNumber(id, "%zu",
+                     "Введите ID товара: ", "Ошибка: некорректный ID\n")) {
+        return NULL;
+    }
 }
 
 

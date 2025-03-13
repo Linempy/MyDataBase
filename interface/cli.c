@@ -22,21 +22,42 @@ bool chooseAct(char * act){
 }
 
 
-bool handlerMessage(ProductList *products, TableColumnList *columns, char * message, IdGenerator *productIdGenerator) {
+CODE_HANDLER handlerMessage(ProductList *products, TableColumnList *columns,
+                            char * message, IdGenerator *productIdGenerator) {
+    if (!products || !columns || !message || !productIdGenerator) {
+        fprintf(stderr, "%s", INCORRECT_ARGUMENTS);
+        return ERROR;
+    }
+
     if (strcmp(message, ADD_PRODUCT) == 0) {
         Product *product = inputDataProduct(productIdGenerator);
         if(!addProduct(products, product)){
-            printf("Ошбика добавления продукта");
-        };
+            fprintf(stderr, "%s", ERROR_ADD_PRODUCT);
+            return ERROR;
+        }
         printf("%s", PRODUCT_WAS_ADDED);
-    } else if (strcmp(message, DELETE_PRODUCT) == 0) {
-        return 1;
-    } else if (strcmp(message, PRINT_TABLE) == 0) {
+        return SUCCESS;
+    }
+
+    if (strcmp(message, DELETE_PRODUCT) == 0) {
+        size_t id;
+        if (!inputIdByProduct(&id)){
+            ///подумать насчет возврата ошибки
+            return ERROR;
+        }
+        removeProduct(products, id, 4);
+        return SUCCESS;
+    }
+
+    if (strcmp(message, PRINT_TABLE) == 0) {
         printTable(products, columns->columns, columns->count);
+        return SUCCESS;
     }
-    else {
-        printf("%s", OTHER_MESSAGE);
-        return 0;
+
+    if (strcmp(message, EXIT_FROM_APP) == 0) {
+        return EXIT;
     }
-    return 1;
+
+    printf("%s", OTHER_MESSAGE);
+    return OTHER_COMMAND;
 }

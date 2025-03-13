@@ -22,9 +22,9 @@ void* safeRealloc(void *ptr, size_t newCapacity);
 
 void reRealloc(ProductList* products, size_t defaultCapacity);
 
-void removeProduct(ProductList* products, size_t index, size_t defaultCapacity);
+void removeProduct(ProductList* products, size_t id, size_t defaultCapacity);
 
-bool addProduct(ProductList *productList, const Product *newProduct);
+bool addProduct(ProductList *productList, Product *newProduct);
 
 void freeProductList(ProductList* products);
 

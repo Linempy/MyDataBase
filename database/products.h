@@ -37,5 +37,7 @@ Product * fillProduct(IdGenerator *productIdGenerator, char *name, const char *d
 
 Product * inputDataProduct(IdGenerator *productIdGenerator);
 
+size_t * inputIdByProduct(size_t *id);
+
 
 #endif //DATABASE_PRODUCTS_H

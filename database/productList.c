@@ -34,7 +34,7 @@ void* safeRealloc(void *ptr, size_t newSize){
 }
 
 
-bool addProduct(ProductList *productList, const Product *newProduct) {
+bool addProduct(ProductList *productList, Product *newProduct) {
     if (!productList || !newProduct) {
         fprintf(stderr, "Ошибка: неверные аргументы\n");
         return false;
@@ -60,6 +60,8 @@ bool addProduct(ProductList *productList, const Product *newProduct) {
     productList->products[productList->length] = *newProduct;
     productList->length++;
 
+    free(newProduct);
+
     return true;
 }
 
@@ -84,23 +86,36 @@ void reRealloc(ProductList* products, size_t defaultCapacity) {
 }
 
 
+size_t findProductIndexById(const ProductList *products, size_t id) {
+    for(Product *currProduct = products->products, *endProduct = products->products + products->length;
+        currProduct < endProduct; currProduct++) {
+        if (id == currProduct->id) {
+            return currProduct - products->products;
+        }
+    }
+    return products->length;
+}
+
 // Удаление продукта по индексу
-void removeProduct(ProductList* products, size_t index, size_t defaultCapacity) {
-    if (!products || index >= products->length) {
-        fprintf(stderr, "Ошибка: неверные аргументы или индекс за пределами.\n");
+void removeProduct(ProductList* products, size_t id, size_t defaultCapacity) {
+    if (!products) {
+        fprintf(stderr, "Ошибка: неверные аргументы\n");
         return;
     }
 
+    size_t index = findProductIndexById(products, id);
+    printf("%zu", index);
     if (index >= products->length) {
         fprintf(stderr, "Index out of bounds\n");
         return;
     }
+
     memmove(&products->products[index],
             &products->products[index + 1],
             (products->length - index - 1) * sizeof(Product));
     products->length--;
 
-//    reRealloc(products, defaultCapacity);
+    reRealloc(products, defaultCapacity);
 }
 
 // Освобождение памяти
@@ -109,10 +124,8 @@ void freeProductList(ProductList* products) {
         return;
     }
 
-    if (products->products) {
-        free(products->products);
-        products->products = NULL;
-    }
+    free(products->products);
+    products->products = NULL;
 
     products->length = 0;
     products->capacity = 0;

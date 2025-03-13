@@ -27,11 +27,14 @@ const char* HELP_MESSAGE = "Чтобы выбрать одно из действ
                            "через точку (.): 4.1\n"
                    "Чтобы выйти из приложения введите exit при выборе действий в меню\n";
 
-const char* OTHER_MESSAGE = "Я тебя не понимаю";
+const char* OTHER_MESSAGE = "Я тебя не понимаю\n";
 
 const char* ERROR_CHOOSE_ACT = "\nERROR: Некорректная строка\n";
-const char* ERROR_PRODUCT_LIST_PTR = "\nERROR: ссылка на NULL\n";
-const char* PRODUCT_WAS_ADDED = "Продукт был успешно добавлен в таблицу";
+const char* ERROR_PRODUCT_LIST_PTR = "\nERROR: Ссылка на NULL\n";
+const char* ERROR_ADD_PRODUCT = "ERROR: Ошибка добавления продукта\n";
+const char* INCORRECT_ARGUMENTS = "ERROR: Некорректные аргументы\n";
+const char* PRODUCT_WAS_ADDED = "Продукт был успешно добавлен в таблицу\n";
+const char* EXIT_FROM_APP = "exit";
 
 
 

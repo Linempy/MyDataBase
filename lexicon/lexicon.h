@@ -20,6 +20,9 @@ extern const char* ERROR_CHOOSE_ACT;
 extern const char* OTHER_MESSAGE;
 extern const char* ERROR_PRODUCT_LIST_PTR;
 extern const char* PRODUCT_WAS_ADDED;
+extern const char* EXIT_FROM_APP;
+extern const char* ERROR_ADD_PRODUCT;
+extern const char* INCORRECT_ARGUMENTS;
 
 
 
