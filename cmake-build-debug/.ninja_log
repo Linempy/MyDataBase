@@ -58,3 +58,10 @@
 195	378	7635607480429426	DataBase.exe	ce1a8de99536eb01
 7	191	7635608126503287	CMakeFiles/DataBase.dir/database/productList.c.obj	83a56a8c33810bb6
 192	370	7635608128357395	DataBase.exe	ce1a8de99536eb01
+14	143	7635619851550158	CMakeFiles/DataBase.dir/main.c.obj	a1a5c067a43f6f64
+26	164	7635619851672712	CMakeFiles/DataBase.dir/database/productList.c.obj	83a56a8c33810bb6
+40	130	7635623864535692	CMakeFiles/DataBase.dir/lexicon/lexicon.c.obj	fd0bbdd02d1b4339
+3	144	7635623864173706	CMakeFiles/DataBase.dir/main.c.obj	a1a5c067a43f6f64
+22	158	7635623864368336	CMakeFiles/DataBase.dir/interactionFile/writeFile.c.obj	fc3901db895c10f5
+30	172	7635623864450287	CMakeFiles/DataBase.dir/interface/cli.c.obj	c38b56fec9efcc47
+172	347	7635623865859094	DataBase.exe	ce1a8de99536eb01

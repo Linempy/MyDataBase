@@ -23,6 +23,7 @@ extern const char* PRODUCT_WAS_ADDED;
 extern const char* EXIT_FROM_APP;
 extern const char* ERROR_ADD_PRODUCT;
 extern const char* INCORRECT_ARGUMENTS;
+extern const char DELIMITER;
 
 
 

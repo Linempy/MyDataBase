@@ -25,15 +25,18 @@ int main(void) {
     TableColumnList columns = createTableColumnList(defaultSizeTableList);
     IdGenerator productIdGenerator = {1};
     addDefaultProductColumns(&columns);
+    char filename[64];
 
 
     printf("%s", HELLO_MESSAGE);
     printf("%s", INFO_OF_APP);
+    setFileName(filename, sizeof(filename));
 
     while (processWork) {
         char message[255];
         if(chooseAct(message)) {
-            CODE_HANDLER result = handlerMessage(&products, &columns, message, &productIdGenerator);
+            CODE_HANDLER result = handlerMessage(&products, &columns,
+                                                 message, &productIdGenerator, filename);
             if (result == 2) {
                 freeProductList(&products);
                 freeTableColumnList(&columns);
@@ -49,7 +52,6 @@ int main(void) {
 //    myQsort(products.products, products.length, sizeof(Product), comparePrice);
 //    printTable(&products, list.columns, 6);
 //    saveTable("example.txt", &products, list.columns, ';');
-
 
     return 0;
 }

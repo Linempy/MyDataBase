@@ -12,6 +12,7 @@
 #include "../database/productList.h"
 #include "../database/tableColumn.h"
 #include "../output/outputConsoleDB.h"
+#include "../interactionFile/writeFile.h"
 
 
 typedef enum {
@@ -28,8 +29,9 @@ void printHELP();
 bool chooseAct(char* act);
 
 CODE_HANDLER handlerMessage(ProductList *productList, TableColumnList *columnList,
-                    char * message, IdGenerator *productIdGenerator);
+                    char * message, IdGenerator *productIdGenerator, char* filename);
 
+void setFileName(char *filename, size_t filenameSize);
 
 
 #endif //DATABASE_CLI_H

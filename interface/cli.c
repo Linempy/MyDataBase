@@ -21,9 +21,31 @@ bool chooseAct(char * act){
     return true;
 }
 
+void setFileName(char *filename, size_t filenameSize){
+    if (!filename || filenameSize == 0) {
+        fprintf(stderr, "%s", INCORRECT_ARGUMENTS);
+        return;
+    }
+
+    printf("Введите название таблицы: ");
+    if (!inputString(filename, (int) filenameSize,
+                     "Введите название таблицы (макс. 59 символов): ")) {
+        fprintf(stderr, "Ошибка ввода названия файла\n");
+        return;
+    }
+
+    if (strlen(filename) + 4 >= filenameSize) {
+        fprintf(stderr, "Ошибка: название файла слишком длинное\n");
+        return;
+    }
+
+    strcat(filename, ".txt");
+}
+
+
 
 CODE_HANDLER handlerMessage(ProductList *products, TableColumnList *columns,
-                            char * message, IdGenerator *productIdGenerator) {
+                            char * message, IdGenerator *productIdGenerator, char* filename) {
     if (!products || !columns || !message || !productIdGenerator) {
         fprintf(stderr, "%s", INCORRECT_ARGUMENTS);
         return ERROR;
@@ -46,6 +68,11 @@ CODE_HANDLER handlerMessage(ProductList *products, TableColumnList *columns,
             return ERROR;
         }
         removeProduct(products, id, 4);
+        return SUCCESS;
+    }
+
+    if(strcmp(message, SAVE_TABLE) == 0) {
+        saveTable(filename, products, columns->columns, DELIMITER);
         return SUCCESS;
     }
 

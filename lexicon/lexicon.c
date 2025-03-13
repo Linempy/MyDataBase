@@ -36,5 +36,7 @@ const char* INCORRECT_ARGUMENTS = "ERROR: Некорректные аргуме�
 const char* PRODUCT_WAS_ADDED = "Продукт был успешно добавлен в таблицу\n";
 const char* EXIT_FROM_APP = "exit";
 
+const char DELIMITER = ';';
+
 
 
