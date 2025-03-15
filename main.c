@@ -12,10 +12,10 @@
 #include "interactionFile/readFile.h"
 #include "interface/cli.h"
 #include "lexicon/lexicon.h"
+//#include "graphics/sdl.h"
 
 
-int main(void) {
-
+int main() {
     system("chcp 65001");
     size_t defaultSizeProdList = 4;
     size_t defaultSizeTableList = 6;
@@ -33,13 +33,14 @@ int main(void) {
 
     while (processWork) {
         char message[255];
+
         if(chooseAct(message)) {
             CODE_HANDLER result = handlerMessage(&products, &columns,
                                                  message, &productIdGenerator, filename);
             if (result == 2) {
                 freeProductList(&products);
                 freeTableColumnList(&columns);
-                break;
+                processWork = false;
             }
         } else return 0;
     }

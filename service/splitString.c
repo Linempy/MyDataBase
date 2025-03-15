@@ -3,13 +3,6 @@
 //
 #include "splitString.h"
 
-//void removeTrailingDelimiter(char *str, char delimiter) {
-//    size_t len = strlen(str);
-//    if (len > 0 && str[len - 1] == delimiter) {
-//        str[len - 1] = '\0';
-//
-//    }
-//}
 
 char** splitString(const char *input, char delimiter, size_t *tokenCount) {
     char *string = strdup(input);
@@ -45,7 +38,6 @@ char** splitString(const char *input, char delimiter, size_t *tokenCount) {
     }
 
     free(string);
-//    removeTrailingDelimiter(tokens, delimiter);
 
     return tokens;
 }

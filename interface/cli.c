@@ -21,10 +21,10 @@ bool chooseAct(char * act){
     return true;
 }
 
-void setFileName(char *filename, size_t filenameSize){
+bool setFileName(char *filename, size_t filenameSize){
     if (!filename || filenameSize == 0) {
         fprintf(stderr, "%s", INCORRECT_ARGUMENTS);
-        return;
+        return false;
     }
 
     char prompt[86];
@@ -32,23 +32,17 @@ void setFileName(char *filename, size_t filenameSize){
     if (!inputString(filename, (int) filenameSize,
                      prompt)) {
         fprintf(stderr, "Ошибка ввода названия файла\n");
-        return;
+        return false;
     }
 
     if (strlen(filename) + 4 >= filenameSize) {
         fprintf(stderr, "Ошибка: название файла слишком длинное\n");
-        return;
+        return false;
     }
 
     strcat(filename, ".txt");
+    return true;
 }
-
-void inputSortedByField(char* typeSort, char* field) {
-
-}
-
-
-
 
 
 CODE_HANDLER handlerMessage(ProductList *products, TableColumnList *columns,
@@ -80,8 +74,13 @@ CODE_HANDLER handlerMessage(ProductList *products, TableColumnList *columns,
 
     if(strcmp(message, SAVE_TABLE) == 0) {
         char saveFileName[64];
-        setFileName(saveFileName, sizeof(saveFileName));
-        saveTable(saveFileName, products, columns->columns, DELIMITER);
+        if(!setFileName(saveFileName, sizeof(saveFileName))) {
+            return ERROR;
+        }
+
+        if(!saveTable(saveFileName, products, columns->columns, DELIMITER)){
+            return ERROR;
+        }
         return SUCCESS;
     }
 

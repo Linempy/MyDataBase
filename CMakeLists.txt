@@ -3,30 +3,28 @@ project(DataBase C)
 
 set(CMAKE_C_STANDARD 11)
 
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
+#set(SDL2_PATH "C:/Users/mazin/Downloads/SDL2-devel-2.32.2-mingw/SDL2-2.32.2/x86_64-w64-mingw32")
+
+
+#find_package(SDL2 REQUIRED)
+#include_directories(${SDL2_INCLUDE_DIR})
+
+
 add_executable(DataBase main.c
-        database/products.h
         database/products.c
-        service/getLine.h
         service/getLine.c
         output/outputConsoleDB.c
-        output/outputConsoleDB.h
-        database/tableColumn.h
-        output/formatField.h
         database/productList.c
-        database/productList.h
         sorted/sortedByField.c
-        sorted/sortedByField.h
         interactionFile/writeFile.c
-        interactionFile/writeFile.h
         interactionFile/readFile.c
-        interactionFile/readFile.h
         service/splitString.c
-        service/splitString.h
         database/tableColumn.c
         interface/cli.c
-        interface/cli.h
-        lexicon/lexicon.h
         lexicon/lexicon.c
+        graphics/sdl.c
+        graphics/sdl.h
 )
 
 include_directories(
@@ -39,5 +37,6 @@ include_directories(
         ${CMAKE_SOURCE_DIR}/lexicon
 )
 
+#target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -pedantic -O2")

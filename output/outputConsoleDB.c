@@ -20,7 +20,6 @@ void formatString(char* dest, size_t destSize, const void* field) {
 }
 
 
-// Вычисление ширины столбцов
 void calculateColumnWidths(const ProductList *products, TableColumn* columns, size_t numColumns) {
     for (TableColumn *currColumn = columns, *end = columns + numColumns; currColumn < end; currColumn++) {
         currColumn->width = strlen(currColumn->header);

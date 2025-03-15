@@ -97,7 +97,7 @@ TableColumnList readHeader(char * filename, char delimiter, size_t defaultCapaci
 }
 
 
-size_t parseSizeT(const char *str, size_t *result) {
+bool parseSizeT(const char *str, size_t *result) {
     char *endPtr;
     errno = 0;
     size_t value = strtoull(str, &endPtr, 10);
@@ -109,7 +109,7 @@ size_t parseSizeT(const char *str, size_t *result) {
     return 1;
 }
 
-float parseFloat(const char *str, float* result) {
+bool parseFloat(const char *str, float* result) {
     char *endPtr;
     errno = 0;
     float value = strtof(str, &endPtr);

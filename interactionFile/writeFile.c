@@ -3,51 +3,8 @@
 //
 #include "writeFile.h"
 
-//// Функция для преобразования int в строку
-//void sizeT_ToString(const void* data, char* buffer, size_t size) {
-//    snprintf(buffer, size, "%zu", *(size_t*)data);
-//}
-//
-//
-//// Функция для преобразования float в строку
-//void floatToString(const void* data, char* buffer, size_t size) {
-//    snprintf(buffer, size, "%.2f", *(float*)data);
-//}
-//
-//
-//// Функция для преобразования double в строку
-//void doubleToString(const void* data, char* buffer, size_t size) {
-//    snprintf(buffer, size, "%.2lf", *(double*)data);
-//}
-//
-//
-//// Функция для преобразования строки в строку (просто копирование)
-//void stringToString(const void* data, char* buffer, size_t size) {
-//    snprintf(buffer, size, "%s", (const char*)data);
-//}
-
-
-// Полиморфная функция для записи данных
-//void myFputs(FILE* file, const void* data, void (*toString)(const void*, char*, size_t), char separator) {
-//    char buffer[255]; // Буфер для преобразования данных в строку
-//
-//    // Преобразуем данные в строку
-//    toString(data, buffer, sizeof(buffer));
-//
-//    if (fputs(buffer, file) == EOF) {
-//        printf("Ошибка записи файла\n");
-//        return;
-//    }
-//
-//    if (fputc(separator, file) == EOF) {
-//        printf("Ошибка записи файла\n");
-//        return;
-//    }
-//}
-
 
 bool writeHeader(const char* filename, TableColumn* columns, char delimiter) {
-    printf("%shbhjb   ", filename);
     FILE *file = fopen(filename, "w");
     if (!file) {
         printf("Ошибка в открытии файла");
@@ -68,14 +25,15 @@ bool writeHeader(const char* filename, TableColumn* columns, char delimiter) {
     }
 
     fclose(file);
+    return true;
 }
 
 
-void writeData(const char* filename, ProductList *products, char delimiter) {
+bool writeData(const char* filename, ProductList *products, char delimiter) {
     FILE *file = fopen(filename, "a");
     if (!file) {
         printf("Ошибка в открытии файла");
-        return;
+        return false;
     }
 
     for (Product *currProduct = products->products, *endProduct = products->products + products->length;
@@ -91,26 +49,36 @@ void writeData(const char* filename, ProductList *products, char delimiter) {
         if(fputc('\n', file) == EOF) {
             printf("Ошибка записи файла\n");
             fclose(file);
-            return;
+            return false;
         }
     }
 
     fclose(file);
+    return true;
 }
 
-void saveTable(const char * filename, ProductList *products, TableColumn *columns, char delimiter) {
+bool saveTable(const char * filename, ProductList *products, TableColumn *columns, char delimiter) {
     if (!filename) {
         fprintf(stderr, "Ошибка в названии файла");
-        return;
+        return false;
     }
 
     if (!products || !columns) {
         printf("Таблица пуста");
-        return;
+        return false;
     }
 
-    writeHeader(filename, columns, delimiter);
+    if(!writeHeader(filename, columns, delimiter)){
+        sprintf(stderr, "%s", "Ошибка записи заголовка таблицы");
+        return false;
+    }
 
-    writeData(filename, products, delimiter);
+    if(!writeData(filename, products, delimiter)){
+        sprintf(stderr, "%s", "Ошибка записи данных таблицы");
+        return false;
+    }
+
     printf("Файл \"%s\" успешно сохранен\n", filename);
+
+    return true;
 }

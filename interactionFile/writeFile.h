@@ -8,30 +8,45 @@
 #include "../database/productList.h"
 #include "../database/tableColumn.h"
 
+
+/**
+ * @brief Функция для записи заголовка (колонок) в файл
+ *
+ * @param filename - имя файла, куда будет производиться запись
+ * @param columns - указатель на колонки таблицы
+ * @param delimiter - разделитель
+ * @return Результат:
+ *  - 1: успешное выполнение функции
+ *  - 0: ошибка
+ */
 bool writeHeader(const char* filename, TableColumn* columns, char delimiter);
 
-// Функция для преобразования int в строку
-void intToString(const void* data, char* buffer, size_t size);
+
+/**
+ * @brief Функция для записи данных таблицы в файл
+ *
+ * @param filename - имя файла, куда будет производиться запись
+ * @param products - указатель на список продуктов
+ * @param delimiter - разделитель
+ * @return Результат:
+ *  - 1: успешное выполнение функции
+ *  - 0: ошибка
+ */
+bool writeData(const char* filename, ProductList *products, char delimiter);
 
 
-// Функция для преобразования float в строку
-void floatToString(const void* data, char* buffer, size_t size);
-
-
-// Функция для преобразования double в строку
-void doubleToString(const void* data, char* buffer, size_t size);
-
-
-// Функция для преобразования строки в строку (просто копирование)
-void stringToString(const void* data, char* buffer, size_t size);
-
-
-// Полиморфная функция для записи данных
-void myFputs(FILE* file, const void* data, void (*toString)(const void*, char*, size_t), char delimiter);
-
-void writeData(const char* filename, ProductList *products, char delimiter);
-
-void saveTable(const char * filename, ProductList *products, TableColumn *columns, char delimiter);
+/**
+ * @brief Функция-обертка для записи таблицы в файл
+ *
+ * @param filename - имя файла, куда будет производиться запись
+ * @param products - указатель на список продуктов
+ * @param columns - указатель на колонки таблицы
+ * @param delimiter - разделитель
+ * @return Результат:
+ *  - 1: успешное выполнение функции
+ *  - 0: ошибка
+ */
+bool saveTable(const char * filename, ProductList *products, TableColumn *columns, char delimiter);
 
 //FILE* saveOpen(const char* filename, const char* mode);
 

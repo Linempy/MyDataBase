@@ -11,7 +11,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+/**
+ * @brief Разбивает строку на токены по указанному разделителю.
+ *
+ * @param input - исходная строка
+ * @param delimiter - разделитель (например ';')
+ * @param tokenCount - указатель на переменную для хранения кол-ва токенов
+ * @return массив разделенных строк, заканчивающийся NULL
+ */
 char** splitString(const char *input, char delimiter, size_t *tokenCount);
 
 
