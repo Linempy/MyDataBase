@@ -37,7 +37,7 @@ int main() {
         if(chooseAct(message)) {
             CODE_HANDLER result = handlerMessage(&products, &columns,
                                                  message, &productIdGenerator, filename);
-            if (result == 2) {
+            if (result == EXIT) {
                 freeProductList(&products);
                 freeTableColumnList(&columns);
                 processWork = false;

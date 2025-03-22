@@ -46,10 +46,8 @@ bool addProduct(ProductList *productList, Product *newProduct) {
             fprintf(stderr, "Ошибка: переполнение при вычислении newCapacity.\n");
             return false;
         }
-        printf("начало");
         Product *newProducts = safeRealloc(productList->products,
                                             newCapacity * sizeof(Product));
-        printf("конец");
         if (!newProducts) {
             return false;
         }

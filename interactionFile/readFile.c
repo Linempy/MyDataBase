@@ -54,7 +54,6 @@ TableColumnList readHeader(char * filename, char delimiter, size_t defaultCapaci
     FILE* file = fopen(filename, "r");
     if (!file) {
         perror("Ошибка открытия файла");
-        fclose(file);
         return (TableColumnList) {NULL, 0,0};
     }
 
@@ -92,34 +91,45 @@ TableColumnList readHeader(char * filename, char delimiter, size_t defaultCapaci
     freeArrayData(columns, tokenCount);
     fclose(file);
 
-
     return tableColumns;
 }
 
 
 bool parseSizeT(const char *str, size_t *result) {
+    if (!str || !result) {
+        return false;
+    }
+
+
     char *endPtr;
     errno = 0;
     size_t value = strtoull(str, &endPtr, 10);
 
-    if (errno == ERANGE || *endPtr != '\0') {
-        return 0;
+
+    if ((errno == ERANGE || *endPtr != '\0') && *endPtr != '\r') {
+        return false;
     }
+
     *result = value;
-    return 1;
+
+    return true;
 }
 
 bool parseFloat(const char *str, float* result) {
+    if (!str || !result || *str == '\0') {
+        return false;
+    }
+
     char *endPtr;
     errno = 0;
     float value = strtof(str, &endPtr);
 
     if (errno == ERANGE || *endPtr != '\0') {
-        return 0;
+        return false;
     }
 
     *result = value;
-    return 1;
+    return true;
 }
 
 
@@ -136,50 +146,57 @@ ProductList readData(char * filename, char delimiter, ProductList *products,
                      IdGenerator *idGenerator){
     FILE* file = fopen(filename, "r");
     if (!file) {
-        perror("Ошибка открытии файла");
+        fprintf(stderr, "Ошибка открытии файла");
         return (ProductList) {NULL, 0, 0};
     }
 
     char* line = readLine(file); // Пропускаем первую строку
+    if (!line) {
+        fprintf(stderr,"Ошибка чтения заголовка файла");
+        fclose(file);
+        line = NULL;
+        return (ProductList) {NULL, 0, 0};
+    }
+    free(line);
+
     size_t tokenCount = 6;
     while ((line=readLine(file)) != NULL) {
         char **data = splitString(line, delimiter, &tokenCount);
-        if (tokenCount != 6) {
+        if (!data || tokenCount != 6) {
             fprintf(stderr, "Ошибка: некорректное количество полей в строке.\n");
             free(line);
-            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
 
-        size_t id, category_id;
-        float price, amount;
+        size_t id = 0, category_id = 0;
+        float price = 0, amount = 0;
 
         if (!parseSizeT(data[0], &id)) {
             fprintf(stderr, "Ошибка: некорректный ID.\n");
             free(line);
-            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
+
         if (!parseFloat(data[3], &price)) {
             fprintf(stderr, "Ошибка: некорректная цена.\n");
             free(line);
-            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
+
         if (!parseFloat(data[4], &amount)) {
             fprintf(stderr, "Ошибка: некорректное количество.\n");
             free(line);
-            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }
+
         if (!parseSizeT(data[5], &category_id)) {
-            fprintf(stderr, "Ошибка: некорректный ID категории.\n");
+//            fprintf(stderr, "|%c| %zu", data[5][1], category_id);
+//            fprintf(stderr, "Ошибка: некорректный ID категории.\n");
             free(line);
-            line = NULL;
             freeArrayData(data, tokenCount);
             continue;
         }

@@ -1,0 +1,31 @@
+id;name;description;price;amount;category_id
+1;Apple;Fresh red apples;0.50;100;1
+2;Banana;Yellow bananas;0.30;150;1
+3;Orange;Juicy oranges;0.70;120;1
+4;Milk;Whole milk 1L;1.20;50;2
+5;Bread;Whole grain bread;2.00;80;3
+6;Eggs;Free-range eggs (12 pcs);3.50;60;4
+7;Chicken;Fresh chicken breast;5.00;40;5
+8;Rice;Basmati rice 1kg;2.50;90;6
+9;Pasta;Spaghetti 500g;1.80;70;6
+10;Tomato;Fresh tomatoes;0.80;200;7
+11;Cucumber;Fresh cucumbers;0.60;180;7
+12;Potato;Russet potatoes 1kg;1.00;150;7
+13;Cheese;Cheddar cheese 200g;3.00;60;2
+14;Yogurt;Natural yogurt 500g;1.50;70;2
+15;Butter;Unsalted butter 250g;2.20;50;2
+16;Salmon;Fresh salmon fillet;10.00;30;5
+17;Beef;Beef steak 500g;8.00;25;5
+18;Pork;Pork chops 500g;6.00;35;5
+19;Lettuce;Fresh lettuce;1.20;100;7
+20;Carrot;Fresh carrots;0.90;120;7
+21;Onion;Yellow onions 1kg;1.10;110;7
+22;Garlic;Fresh garlic 100g;0.80;90;7
+23;Flour;All-purpose flour 1kg;1.50;60;6
+24;Sugar;Granulated sugar 1kg;1.20;80;6
+25;Salt;Table salt 1kg;0.50;100;6
+26;Pepper;Black pepper 100g;1.00;70;6
+27;Olive Oil;Extra virgin olive oil 1L;5.00;40;8
+28;Honey;Natural honey 500g;4.00;50;9
+29;Coffee;Ground coffee 250g;4.50;60;10
+30;Tea;Black tea 100g;3.00;70;10
